@@ -10,17 +10,17 @@ async function initGreeter() {
     debug = new Debug();
   }
 
-	lightdm.authentication_complete?.connect( () => authentication_complete() );
+  lightdm.authentication_complete?.connect(() => authentication_complete());
 
-  lightdm.show_prompt?.connect( (prompt, type) => {
+  lightdm.show_prompt?.connect((prompt, type) => {
     console.log("PROMPT!");
     console.log(prompt, type);
-  } );
+  });
 
-  lightdm.show_message?.connect( (msg, type) => {
+  lightdm.show_message?.connect((msg, type) => {
     console.log("MESSAGE!");
     console.log(msg, type);
-  } );
+  });
 
   // Instantiate image profile
   userProfile = new UserProfile();
@@ -54,7 +54,7 @@ async function initGreeter() {
 
   // Instantiate backgrounds settings
   backgrounds = new Backgrounds();
-  await backgrounds._init();
+  backgrounds._init();
 
   // Instantiate sidebar navigation
   sidebarNavigate = new SidebarNavigate();
@@ -73,14 +73,13 @@ async function initGreeter() {
 
   // Instantiate authentication
   authenticate = new Authenticate();
+}
 
- }
-
-window.addEventListener("GreeterReady", initGreeter)
+window.addEventListener("GreeterReady", initGreeter);
 
 const greeterReady = new Event("GreeterReady");
 
 setTimeout(() => {
   if (!("lightdm" in window)) debug = new Debug();
   window.dispatchEvent(greeterReady);
-}, 1000)
+}, 1000);

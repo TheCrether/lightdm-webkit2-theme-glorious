@@ -23,7 +23,7 @@
   background: var(--sidebar-bg);
   /* backdrop-filter: blur(var(--global-blur-strength)); */
   position: absolute;
-  /* border-radius: 12px; */
+  border-radius: 12px;
   top: 0;
   right: 0;
   transform: translateX(120%) translateZ(0);
