@@ -225,3 +225,4 @@ const languagePack = {
     of: "von",
   },
 };
+window.languagePack = languagePack;

@@ -1,10 +1,10 @@
-## glorious - a lightdm webkit2 theme
+# glorious - a lightdm webkit2 theme
 
-[![maintained](https://img.shields.io/maintenance/yes/2020?label=maintained&style=flat-square)](https://github.com/manilarome/the-glorious-lightdm-webkit2-theme/commits/master) [![contributions](https://img.shields.io/badge/contribution-welcome-brightgreen&?style=flat-square)](https://github.com/manilarome/the-glorious-lightdm-webkit2-theme/pulls) [![HitCount](http://hits.dwyl.com/manilarome/the-glorious-lightdm-webkit2-theme.svg)](http://hits.dwyl.com/manilarome/the-glorious-lightdm-webkit2-theme) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0812167ef9954b74ac23f7c1bfeb3764)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=manilarome/the-glorious-lightdm-webkit2-theme&amp;utm_campaign=Badge_Grade)
+[![maintained](https://img.shields.io/maintenance/yes/2021?label=maintained&style=flat-square)](https://github.com/TheCrether/lightdm-webkit2-theme-glorious/tree/master) [![contributions](https://img.shields.io/badge/contribution-welcome-brightgreen&?style=flat-square)](https://github.com/TheCrether/lightdm-webkit2-theme-glorious/tree/master)
 
 A sleek, modern, and glorified lightdm webkit2 theme
 
-## [Live Demo](https://manilarome.github.io/lightdm-webkit2-theme-glorious)
+## [Live Demo](https://thecrether.github.io/lightdm-webkit2-theme-glorious)
 
 ### Demo password: `toor`
 
@@ -12,7 +12,7 @@ A sleek, modern, and glorified lightdm webkit2 theme
 
 ### Dependencies
 
-Please make sure you don't have an ancient version of these.
+This fork of the theme is made to be compatible with the latest version that is available in the [AUR](https://archlinux.org/packages/community/x86_64/lightdm-webkit2-greeter/). Please make sure you don't have an ancient version of these.
 
 + lightdm
 + lightdm-webkit2-greeter
@@ -21,43 +21,31 @@ Please make sure you don't have an ancient version of these.
 
 0. If you're using `systemd`, make sure that `lightdm.service` or `lightdm-plymouth.service` is enabled and running. There's a bunch of guides on the internet. [Archwiki](https://wiki.archlinux.org/index.php/LightDM) is recommended.
 
-1. Install it. You can get the theme by cloning this repo or by installing it from `AUR` using `makepkg` or an AUR helper like `yay`.
+1. Install it. You can get the theme by cloning this repo or by installing it.
 
-	+ AUR route.
+    - Clone the repo
 
-		```sh
-		# AUR Helper
-		yay -Syu lightdm-webkit2-theme-glorious
+        1. Download and extract the latest stable release from [here](https://github.com/Thecrether/lightdm-webkit2-theme-glorious/releases).
+        2. Copy it to the lightdm-webkit theme folder:
 
-		# Makepkg route
-		git clone https://aur.archlinux.org/lightdm-webkit2-theme-glorious.git
-		cd lightdm-webkit2-theme-glorious
-		makepkg -sri
-		```
+        ```sh
+        cp -r lightdm-webkit2-theme-glorious /usr/share/lightdm-webkit/themes/glorious-crether
+        ```
 
-	+ Clone the repo route.
+2. Set lightdm greeter session to webkit0.
 
-		1. Download and extract the latest stable release from [here](https://github.com/manilarome/lightdm-webkit2-theme-glorious/releases).
-		2. Copy it to the lightdm-webkit theme folder:
+     ```sh
+     # Set default lightdm greeter to lightdm-webkit2-greeter
+     sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-webkit2-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf
+     ```
 
-			```sh
-			cp -r lightdm-webkit2-theme-glorious /usr/share/lightdm-webkit/themes/glorious
-			```
+3. Set it as the lightdm webkit2 theme then enable `debug_mode` by setting it to `true`. Why do we need to enable `debug_mode`? Sometimes you will be greeted by an error. And this error is due to a race condition where the theme is trying to access the `lightdm` object even though it doesn't exist *yet*. Debug mode will allow you to `right-click` and `reload` the greeter just like a webpage.
 
-3. Set lightdm greeter session to webkit2.
-
-	```sh
-	# Set default lightdm greeter to lightdm-webkit2-greeter
-	sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-webkit2-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf
-	```
-
-4. Set it as the lightdm webkit2 theme then enable `debug_mode` by setting it to `true`. Why do we need to enable `debug_mode`? Sometimes you will be greeted by an error. And this error is due to a race condition where the theme is trying to access the `lightdm` object even though it doesn't exist *yet*. Debug mode will allow you to `right-click` and `reload` the greeter just like a webpage.
-
-	```sh
-	# Set default lightdm-webkit2-greeter theme to Glorious
-	sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-	sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-	```
+     ```sh
+     # Set default lightdm-webkit2-greeter theme to Glorious
+     sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious-crether #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+     sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+     ```
 
 ### Uninstall
 
@@ -107,7 +95,7 @@ There are two clock modes available - `24-hour` and `12-hour`. Switch between cl
 + Add more background images by putting your wallpapers/images in `/usr/share/backgrounds/`.
 + Non-image and directory inside `/usr/share/backgrounds/` will cause an error! You will likely encounter this if you installed a package (for example `archlinux-wallpaper` that includes `AUTHORS` file).
 + Set your profile image in system settings or by using `mugshot`.
-+ Missing DE/WM logo? Submit a [pull request](https://github.com/manilarome/lightdm-webkit2-theme-glorious/pulls)!
++ Missing DE/WM logo? Submit a [pull request](https://github.com/TheCrether/lightdm-webkit2-theme-glorious/pulls)!
 + Translations are not yet supported. PR's are welcome!
 
 ### Credits
