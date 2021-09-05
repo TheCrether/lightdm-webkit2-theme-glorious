@@ -192,12 +192,27 @@ img.button-sidebar-item-image {
   box-sizing: border-box;
 }
 
+.sidebar-group:not(#sidebar-settings-selection) .sidebar-settings-item-list {
+  height: 100%;
+}
+
+.sidebar-group:not(#sidebar-settings-backgrounds) .sidebar-settings-item-list {
+  align-content: center;
+}
+
 .sidebar-settings-item-list {
   list-style-type: none;
   padding: 0;
-  overflow: hidden;
-  flex-grow: 1;
-  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+}
+
+#sidebar-settings-sessions,
+#sidebar-settings-accounts {
+  height: 100%;
 }
 
 .button-sidebar-list-item {
