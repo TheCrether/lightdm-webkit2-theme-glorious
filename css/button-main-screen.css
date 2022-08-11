@@ -30,12 +30,13 @@
   object-fit: contain;
   display: block;
   filter: blur(0);
-  transition: filter calc(var(--global-animation-speed) / 2) ease;
+  transition: filter 0s ease calc(var(--global-animation-speed) * 0.85);
 }
 
 /* Give an illusion that it's being blurred by sidebar */
 .button-main-screen-image.button-main-screen-blur {
   filter: blur(var(--global-blur-strength));
+  transition: none;
 }
 
 #buttons-main-screen-settings-parent.buttons-main-screen-parent {

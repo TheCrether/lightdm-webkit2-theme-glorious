@@ -6,13 +6,14 @@
   position: fixed;
   margin: 0;
   padding: 0;
-  z-index: -1;
+  z-index: 4;
   overflow: hidden;
   background-color: transparent;
+  pointer-events: none;
 }
 
 #sidebar-overlay.sidebar-overlay-show {
-  z-index: 4;
+  pointer-events: all;
 }
 
 #sidebar {
@@ -26,7 +27,7 @@
   border-radius: 12px;
   top: 0;
   right: 0;
-  transform: translateX(120%) translateZ(0);
+  transform: translateX(120%);
   padding: var(--padding);
   overflow: hidden;
   scrollbar-width: none;
@@ -36,6 +37,7 @@
   user-select: none;
   transition: transform var(--global-animation-speed) ease,
     width var(--global-animation-speed) ease;
+  will-change: transform;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 16px 16px rgba(0, 0, 0, 0.12);
@@ -46,7 +48,7 @@
 }
 
 #sidebar.sidebar-show {
-  transform: translateX(0) translateZ(0);
+  transform: translateX(0);
 }
 
 .sidebar-group {
